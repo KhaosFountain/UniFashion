@@ -26,4 +26,4 @@ const style = StyleSheet.create({
 
 
 
-//run the command: expo install expo-web-browser
+//run the command: npm install expo-web-browser
