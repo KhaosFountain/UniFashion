@@ -1,20 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// import * as React from 'react';
+import React from 'react';
+import { StyleSheet, Button, Text, View, TextInput } from "react-native";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import { useState } from "react";
+import Header from './components/header'
+import Boxes from './components/Boxes'
+
+
+export  default class App extends React.Component{
+  render(){
+    return(
+      <View style = {style.container}>
+        <Header/>
+        <Boxes/>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const style = StyleSheet.create({
+  container:{
+      flex: 1,
   },
 });
+
+
+
+//run the command: expo install expo-web-browser
