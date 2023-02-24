@@ -5,6 +5,7 @@ import { StyleSheet, Button, Text, View, TextInput } from "react-native";
 import { useState } from "react";
 import Header from './components/header'
 import Boxes from './components/Boxes'
+import Popup from './components/Popup/modal';
 
 
 export  default class App extends React.Component{
@@ -13,6 +14,7 @@ export  default class App extends React.Component{
       <View style = {style.container}>
         <Header/>
         <Boxes/>
+        <Popup />
       </View>
     );
   }
