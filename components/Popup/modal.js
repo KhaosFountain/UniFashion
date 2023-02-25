@@ -1,6 +1,7 @@
 import React from "react";
 import {View, Button, Text, Modal, StyleSheet } from 'react-native'
 import { useState } from "react";
+import Filter from "../Filters/filter";
 
 export default function Popup(){
     const[show,isShown] = useState(true)
@@ -9,7 +10,7 @@ export default function Popup(){
             <Modal transparent={true} visible={show}>
              <View style={style.outerModal}>
              <View style={style.InnerModal}>
-             <Text style = {{fontSize: 80}}> This is a modal</Text>
+             <Filter/>
              <Button title="Hide Modal" onPress={()=>{isShown(!show)}}/>
              </View>
             </View>
@@ -22,14 +23,15 @@ export default function Popup(){
 const style = StyleSheet.create({
 
     outerModal:{
-        backgroundColor: 
-        "#000000aa",flex:1
+        backgroundColor: "#000000aa",
+        flex:1,
     },
     InnerModal:{
         backgroundColor:"white",
         marginRight:"auto", 
         marginTop:35,
-        flex:1
+        flex:1,
+        minWidth:300
     },
   });
   
