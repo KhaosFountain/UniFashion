@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View , Image} from 'react-native';
+import Popup from './Popup/modal';
 
 
 export default class Header extends React.Component{
@@ -8,6 +9,7 @@ export default class Header extends React.Component{
             <View style = {style.logo}>
                 {/* <Image source = {require('../Logo/UniFashion2-resize.png')}/> */}
                 <Text style = {style.text}>UNIFASHION</Text>
+                <Popup/>
             </View>
         );
     }
