@@ -5,6 +5,7 @@ import { StyleSheet, Button, Text, View, TextInput } from "react-native";
 import { useState } from "react";
 import Header from './components/header'
 import Boxes from './components/Boxes'
+import Popup from './components/Popup/modal';
 
 
 export  default class App extends React.Component{
@@ -26,4 +27,4 @@ const style = StyleSheet.create({
 
 
 
-//run the command: expo install expo-web-browser
+//run the command: npm install expo-web-browser
