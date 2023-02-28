@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Button, Text,  StyleSheet, FlatList, TouchableHighlight,Alert } from 'react-native'
+import {View, Button, Text,  StyleSheet, TouchableOpacity } from 'react-native'
 import { useState } from "react";
 
 export default function BrandFilter(){
@@ -25,7 +25,11 @@ export default function BrandFilter(){
   return (
     <View style={styles.container}>
       <View style={styles.color}>
-      <Button title="Brand" onPress={handlePress} />
+      <TouchableOpacity onPress={handlePress}>
+        <View style = {styles.button}>
+        <Text style={styles.buttonText}>Brand</Text>
+        </View>
+      </TouchableOpacity>
       </View>
       {showButton && moreButtons()}
     </View>
@@ -43,5 +47,17 @@ export default function BrandFilter(){
     subcolor:{
       display:"flex",
       marginRight:180,
-    }
+    },
+    button: {
+        marginBottom: 10,
+        width: 90,
+        alignItems: 'center',
+        backgroundColor: '#2196F3',
+      },
+      buttonText: {
+        textAlign: 'center',
+        padding: 10,
+        color: 'white',
+        fontSize:20
+      },
  })
