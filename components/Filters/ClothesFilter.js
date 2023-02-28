@@ -2,7 +2,7 @@ import React from "react";
 import {View, Button, Text,  StyleSheet, FlatList, TouchableHighlight,Alert } from 'react-native'
 import { useState } from "react";
 
-export default function Filter(){
+export default function ClothesFilter(){
   const [showButton, setShowButton] = useState(false);
 
   const handlePress = () => {
@@ -12,11 +12,11 @@ export default function Filter(){
   const moreButtons = () =>{
     return(
       <View style={styles.subcolor}>
-      <Button title="Red" onPress={() => {}} />
-      <Button title="Green" onPress={() => {}} />
-      <Button title="Yellow" onPress={() => {}} />
-      <Button title="Blue" onPress={() => {}} />
-
+      <Button title="Tshirt" onPress={() => {}} />
+      <Button title="Hoodie" onPress={() => {}} />
+      <Button title="Jumper" onPress={() => {}} />
+      <Button title="Pants" onPress={() => {}} />
+      <Button title="Shorts" onPress={() => {}} />
       </View>
     )
 
@@ -25,7 +25,7 @@ export default function Filter(){
   return (
     <View style={styles.container}>
       <View style={styles.color}>
-      <Button title="Color" onPress={handlePress} />
+      <Button title="Clothing" onPress={handlePress} />
       </View>
       {showButton && moreButtons()}
     </View>
