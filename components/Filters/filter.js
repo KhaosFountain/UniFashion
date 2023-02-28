@@ -1,21 +1,31 @@
 import React from "react";
-import {View, Button, Text,  StyleSheet, FlatList } from 'react-native'
+import {View, Button, Text,  StyleSheet, FlatList, TouchableHighlight,Alert } from 'react-native'
+import { useState } from "react";
 
 export default function Filter(){
+  const [showButton, setShowButton] = useState(false);
+
+  const handlePress = () => {
+    setShowButton(!showButton);
+  };
+
+  const moreButtons = () =>{
     return(
-        <View>
-        <FlatList
-        data={[
-          {key: 'Colour'},
-          {key: 'Clothing'},
-          {key: 'Brand'},
-        ]}
-        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-      />
-        </View>
+      <View>
+      <Button title="Another Button" onPress={() => {}} />
+      </View>
     )
+
+  }
+
+  return (
+    <View>
+      <Button title="Color" onPress={handlePress} />
+      {showButton && moreButtons()}
+    </View>
+  );
 }
 
-const styles = StyleSheet.create({
+// const styles = StyleSheet.create({
 
-})
+// })
