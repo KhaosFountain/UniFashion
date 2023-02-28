@@ -12,11 +12,31 @@ export default function BrandFilter(){
   const moreButtons = () =>{
     return(
       <View style={styles.subcolor}>
-      <Button title="Nike" onPress={() => {}} />
-      <Button title="Adidas" onPress={() => {}} />
-      <Button title="Puma" onPress={() => {}} />
-      <Button title="Asics" onPress={() => {}} />
-      <Button title="Lacoste" onPress={() => {}} />
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Nike</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Adidas</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Puma</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Asics</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Lacoste</Text>
+        </View>
+      </TouchableOpacity>
       </View>
     )
 
@@ -49,8 +69,8 @@ export default function BrandFilter(){
       marginRight:180,
     },
     button: {
-        marginBottom: 10,
-        width: 90,
+        marginBottom: 0,
+        width: 100,
         alignItems: 'center',
         backgroundColor: '#2196F3',
       },
@@ -60,4 +80,18 @@ export default function BrandFilter(){
         color: 'white',
         fontSize:20
       },
+
+      brandbutton: {
+        marginBottom: 0,
+        width: 90,
+        alignItems: 'left',
+        backgroundColor: 'black',
+      },
+      brandbuttonText: {
+        textAlign: 'center',
+        padding: 10,
+        color: 'white',
+        fontSize:16
+      },
+
  })

@@ -2,7 +2,7 @@ import React from "react";
 import {View, Button, Text,  StyleSheet, TouchableOpacity } from 'react-native'
 import { useState } from "react";
 
-export default function ColorFilter(){
+export default function BrandFilter(){
   const [showButton, setShowButton] = useState(false);
 
   const handlePress = () => {
@@ -12,16 +12,36 @@ export default function ColorFilter(){
   const moreButtons = () =>{
     return(
       <View style={styles.subcolor}>
-      <Button title="Red" onPress={() => {}} />
-      <Button title="Green" onPress={() => {}} />
-      <Button title="Yellow" onPress={() => {}} />
-      <Button title="Blue" onPress={() => {}} />
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Red</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Yellow</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Blue</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Pink</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => {}}>
+        <View style = {styles.brandbutton}>
+        <Text style={styles.brandbuttonText}>Purple</Text>
+        </View>
+      </TouchableOpacity>
       </View>
     )
 
   }
 
-  
   return (
     <View style={styles.container}>
       <View style={styles.color}>
@@ -49,8 +69,8 @@ export default function ColorFilter(){
       marginRight:180,
     },
     button: {
-        marginBottom: 10,
-        width: 90,
+        marginBottom: 0,
+        width: 100,
         alignItems: 'center',
         backgroundColor: '#2196F3',
       },
@@ -60,5 +80,18 @@ export default function ColorFilter(){
         color: 'white',
         fontSize:20
       },
- })
 
+      brandbutton: {
+        marginBottom: 0,
+        width: 90,
+        alignItems: 'left',
+        backgroundColor: 'black',
+      },
+      brandbuttonText: {
+        textAlign: 'center',
+        padding: 10,
+        color: 'white',
+        fontSize:16
+      },
+
+ })
