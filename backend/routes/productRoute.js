@@ -26,4 +26,23 @@ router.post('/create',async(req,res)=>{
     }
 })
 
+router.patch('/update/:productName',async(req,res)=>{
+   
+    try{
+        const updateProduct = await Products.findOneAndUpdate({productName:req.params.productName},
+            {productName:req.body.productName},{ new: true })
+            res.json(updateProduct)
+    }catch(err){
+        res.json({message:err.message})
+    }
+})
+
+router.delete('/delete/:productName',async(req,res)=>{
+    try{
+        const deleteProduct = await Products.findOneAndDelete({productName:req.params.productName},{ new: true })
+            res.json(deleteProduct)
+    }catch(err){
+        res.json({message:err.message})
+    }
+})
 module.exports = router;
