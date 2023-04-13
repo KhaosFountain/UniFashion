@@ -11,15 +11,20 @@ router.get('/',async(req,res)=>{
         res.json({message:err.message})
     }
 })
-
+let nextProductId = 0;
 router.post('/create',async(req,res)=>{
     console.log(req.body);
     const newProduct = new Products({
+        productTitle:req.body.productTitle,
+        id: '' + nextProductId,
+        color:req.body.color,
+        url:req.body.url,
         productName:req.body.productName,
         price:req.body.price
     })
     try{
         const createProduct = await newProduct.save()
+        nextProductId++
         res.json(createProduct)
     }catch(err){
         res.json({message:err.message})
