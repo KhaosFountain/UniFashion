@@ -18,8 +18,7 @@ const ProductSchema = new Mongoose.Schema({
     },
     price: {
         type:Number,
-        required:true,
-    },
+        },
 })
 
 const Products = Mongoose.model("product",ProductSchema)
