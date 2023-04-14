@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 
 
 
-mongoose.connect('mongodb+srv://UniFashion:Fashion@cluster0.dylj4xi.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://UniFashion:<password>@cluster0.dylj4xi.mongodb.net/?retryWrites=true&w=majority')
 const db = mongoose.connection
 app.use(bodyParser.json())
 
