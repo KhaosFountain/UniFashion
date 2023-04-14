@@ -11,6 +11,7 @@ router.get('/',async(req,res)=>{
         res.json({message:err.message})
     }
 })
+
 let nextProductId = 0;
 router.post('/create',async(req,res)=>{
     console.log(req.body);
@@ -30,6 +31,30 @@ router.post('/create',async(req,res)=>{
         res.json({message:err.message})
     }
 })
+
+router.post('/find', async(req, res) => {
+    try {
+        const search = {};
+
+        if (req.body.productTitle) {
+            search.productTitle = req.body.productTitle;
+        }
+
+        if (req.body.color) {
+            search.color = req.body.color;
+        }
+
+        if (req.body.productName) {
+            search.productName = req.body.productName;
+        }
+
+        const find = await Products.find(search);
+        res.json(find);
+    } catch (err) {
+        res.json({ message: err.message });
+    }
+});
+
 
 router.patch('/update/:productName',async(req,res)=>{
    
