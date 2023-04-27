@@ -10,10 +10,11 @@ export default class Boxes extends React.Component {
         {/* onPress = {() => openBrowserAsync("https://www.pinterest.com/pin/412220172150554890/")} */}
           <View style = {style.inner} >
             <Image style = {style.image} source={require("../outfits/outfit1.png")}/>
+            <a href="https://i1.adis.ws/i/boohooamplience/bmm32989_white_xl/white-basic-crew-neck-t-shirt?$product_image_main_thumbnail$&fmt=webp"></a>
           </View>
           <View>
             <TouchableOpacity onPress = {() => openBrowserAsync("https://www.pinterest.com/pin/412220172150554890/")}>
-                <View style = {style.button}> 
+                <View style = {style.button}>
                     <Text style = {style.text}>View Outfit</Text>
                 </View>
             </TouchableOpacity>
