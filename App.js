@@ -35,29 +35,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {auth ? (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              title: "Home",
-              headerStyle: { backgroundColor: "#101820FF" },
-              headerTintColor: "white",
-            }}
-          />
-          <Stack.Screen
-            name="View"
-            component={ViewScreen}
-            options={{
-              title: "View",
-              headerStyle: { backgroundColor: "#102820FF" },
-              headerTintColor: "white",
-            }}
-          />
-        </Stack.Navigator>
-      ) : (
-        <>
+
           <Stack.Navigator>
             <Stack.Screen
               name="auth"
@@ -110,9 +88,6 @@ export default function App() {
               }}
             />
           </Stack.Navigator>
-
-        </>
-      )}
     </NavigationContainer>
 
   );
