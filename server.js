@@ -16,7 +16,10 @@ db.once('open',()=> console.error('Connected to database'))
 const productRouter = require("./backend/routes/productRoute")
 app.use('/products',productRouter)
 
+const userRouter = require("./backend/routes/userRoute")
+app.use('/products',userRouter)
+
 app.use((req,res,next)=>{
     res.status(401).send('NOT_FOUND');
   })
-app.listen(3000,()=> console.log('Server Started'))
+app.listen(8000,()=> console.log('Server Started'))
