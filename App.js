@@ -20,6 +20,7 @@ import Popup from "./components/Popup/modal";
 import ViewScreen from "./Screens/ViewScreen";
 import SignupScreen from "./Screens/Signup";
 import AuthScreen from "./Screens/Auth";
+import AddScreen from "./Screens/AddScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -75,6 +76,7 @@ export default function App() {
                 title: "signup",
                 headerStyle: { backgroundColor: "#102820FF" },
                 headerTintColor: "white",
+                headerTitleAlign: 'center',
               }}
             />
             <Stack.Screen
@@ -84,6 +86,7 @@ export default function App() {
                 title: "Home",
                 headerStyle: { backgroundColor: "#101820FF" },
                 headerTintColor: "white",
+                headerTitleAlign: 'center',
               }}
             />
             <Stack.Screen
@@ -93,6 +96,17 @@ export default function App() {
                 title: "View",
                 headerStyle: { backgroundColor: "#102820FF" },
                 headerTintColor: "white",
+                headerTitleAlign: 'center',
+              }}
+            />
+            <Stack.Screen
+              name="Add"
+              component={AddScreen}
+              options={{
+                title: "Add Clothes",
+                headerStyle: { backgroundColor: "#102820FF" },
+                headerTintColor: "white",
+                headerTitleAlign: 'center',
               }}
             />
           </Stack.Navigator>
@@ -111,7 +125,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style = {style.text}>Go to Fetch Screen</Text>
       </Pressable> */}
 
-      {/* <Pressable onPress={() => navigation.navigate("Add")} style = {style.button}>
+      <Pressable onPress={() => navigation.navigate("Add")} style = {style.button}>
         <Text style = {style.text}>Add Product</Text>
       </Pressable>
       <Pressable onPress={() => navigation.navigate("Edit")} style = {style.button}>
@@ -119,7 +133,7 @@ const HomeScreen = ({ navigation }) => {
       </Pressable>
       <Pressable onPress={() => navigation.navigate("Delete")} style = {style.button}>
         <Text style = {style.text}>Delete Product</Text>
-      </Pressable> */}
+      </Pressable>
 
       <Pressable
         onPress={() => navigation.navigate("View")}
