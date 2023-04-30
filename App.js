@@ -1,30 +1,159 @@
-// import * as React from 'react';
-import React from 'react';
-import { StyleSheet, Button, Text, View, TextInput } from "react-native";
+import React from "react";
+import {
+  StyleSheet,
+  Button,
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  Image,
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { useState } from "react";
-import Header from './components/header'
-import Boxes from './components/Boxes'
-import Popup from './components/Popup/modal';
+import Header from "./components/header";
+import Boxes from "./components/Boxes";
+import Popup from "./components/Popup/modal";
 
+//screens
+import ViewScreen from "./Screens/ViewScreen";
+import SignupScreen from "./Screens/Signup";
+import AuthScreen from "./Screens/Auth";
 
-export  default class App extends React.Component{
-  render(){
-    return(
-      <View style = {style.container}>
-        <Header/>
-        <Boxes/>
-      </View>
-    );
-  }
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  const [auth, setAuth] = useState(false);
+
+  const handleAuthentication = () => {
+    if (username === "user" && password === "password") {
+      setAuth(true);
+    }
+  };
+
+  return (
+    <NavigationContainer>
+      {auth ? (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: "Home",
+              headerStyle: { backgroundColor: "#101820FF" },
+              headerTintColor: "white",
+            }}
+          />
+          <Stack.Screen
+            name="View"
+            component={ViewScreen}
+            options={{
+              title: "View",
+              headerStyle: { backgroundColor: "#102820FF" },
+              headerTintColor: "white",
+            }}
+          />
+        </Stack.Navigator>
+      ) : (
+        <>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="auth"
+              component={AuthScreen}
+              options={{
+                title: "signup",
+                headerStyle: { backgroundColor: "#102820FF" },
+                headerTintColor: "white",
+              }}
+            />
+
+            <Stack.Screen
+              name="signup"
+              component={SignupScreen}
+              options={{
+                title: "signup",
+                headerStyle: { backgroundColor: "#102820FF" },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="Home"
+              component={HomeScreen}
+              options={{
+                title: "Home",
+                headerStyle: { backgroundColor: "#101820FF" },
+                headerTintColor: "white",
+              }}
+            />
+            <Stack.Screen
+              name="View"
+              component={ViewScreen}
+              options={{
+                title: "View",
+                headerStyle: { backgroundColor: "#102820FF" },
+                headerTintColor: "white",
+              }}
+            />
+          </Stack.Navigator>
+
+        </>
+      )}
+    </NavigationContainer>
+
+  );
 }
 
+const HomeScreen = ({ navigation }) => {
+  return (
+    <View style={style.container}>
+      {/* <Pressable onPress={() => navigation.navigate("Fetch")} style = {style.button}>
+        <Text style = {style.text}>Go to Fetch Screen</Text>
+      </Pressable> */}
+
+      {/* <Pressable onPress={() => navigation.navigate("Add")} style = {style.button}>
+        <Text style = {style.text}>Add Product</Text>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("Edit")} style = {style.button}>
+        <Text style = {style.text}>Edit Product</Text>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate("Delete")} style = {style.button}>
+        <Text style = {style.text}>Delete Product</Text>
+      </Pressable> */}
+
+      <Pressable
+        onPress={() => navigation.navigate("View")}
+        style={style.button}
+      >
+        <Text style={style.text}>View Product</Text>
+      </Pressable>
+    </View>
+  );
+};
+
 const style = StyleSheet.create({
-  container:{
-      flex: 1,
+  container: {
+    flex: 1,
+    backgroundColor: "grey",
+  },
+  logIn: {
+    backgroundColor: "pink",
+    padding: 10,
+    marginTop: 10,
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "black",
+    borderRadius: 3,
+    width: 100,
+  },
+  button: {
+    backgroundColor: "pink",
+    padding: 10,
+    marginTop: 10,
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "black",
+    borderRadius: 3,
+    width: 100,
   },
 });
-
-
-
-//run the command: npm install expo-web-browser
