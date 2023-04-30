@@ -24,7 +24,7 @@ export default function AuthScreen({ navigation }) {
                 placeholder="Password"
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry={true} 
+                secureTextEntry={true}
             />
             <Pressable style={style.logIn}>
                 <Text style={style.text}>Log In</Text>
@@ -39,6 +39,13 @@ export default function AuthScreen({ navigation }) {
                     <Text>Sign Up</Text>
                 </Pressable>
             </View>
+
+            <Pressable
+                style={style.logIn}
+                onPress={() => navigation.navigate("Home")}
+            >
+                <Text>Sign Up</Text>
+            </Pressable>
         </View>
     );
 }
