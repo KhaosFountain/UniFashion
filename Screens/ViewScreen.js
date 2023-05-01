@@ -9,6 +9,7 @@ import {
   Pressable,
 } from "react-native";
 import { openBrowserAsync } from "expo-web-browser";
+import { scheduleNotificationHandler,sendPushNotificationHandler } from "../components/notifs";
 
 export default function ViewScreen({navigation}) {
   const [products, setProducts] = useState([]);
@@ -79,7 +80,7 @@ export default function ViewScreen({navigation}) {
           </Text>
           <Pressable
             style={style.logIn}
-            onPress={() => deleteApi(product.productName)}
+            onPress={() => {scheduleNotificationHandler(product.productName); sendPushNotificationHandler();deleteApi(product.productName);}}
           >
             <Text>Delete</Text>
           </Pressable>

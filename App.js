@@ -1,20 +1,14 @@
 import React from "react";
 import {
   StyleSheet,
-  Button,
   Text,
   View,
-  TextInput,
   Pressable,
   Image,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { useState } from "react";
-import Header from "./components/header";
-import Boxes from "./components/Boxes";
-import Popup from "./components/Popup/modal";
 
 //screens
 import ViewScreen from "./Screens/ViewScreen";
@@ -25,14 +19,6 @@ import AddScreen from "./Screens/AddScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [auth, setAuth] = useState(false);
-
-  const handleAuthentication = () => {
-    if (username === "user" && password === "password") {
-      setAuth(true);
-    }
-  };
-
   return (
     <NavigationContainer>
           <Stack.Navigator>
