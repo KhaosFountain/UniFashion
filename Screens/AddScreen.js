@@ -126,7 +126,7 @@ export default function AddScreen() {
                         }}
                         style={pickerStyles}
                     >
-                        <Text>{color || 'Select color'}</Text>
+                        <Text style = {style.text}>{color || 'Select color    '} {"\u25BE"}</Text>
                     </TouchableOpacity>
                     <Modal
                         animationType="fade"
@@ -147,14 +147,6 @@ export default function AddScreen() {
                         </View>
                     </Modal>
 
-                    <Text style={style.label}>URL:</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Enter URL"
-                        value={url}
-                        onChangeText={setUrl}
-                    />
-
                     <Text style={style.label}>Cloth Type:</Text>
                     <TouchableOpacity
                         onPress={() => {
@@ -162,7 +154,7 @@ export default function AddScreen() {
                         }}
                         style={pickerStyles}
                     >
-                        <Text>{type || 'Select type'}</Text>
+                        <Text style = {style.text}>{type || 'Select type     '} {"\u25BE"}</Text>
                     </TouchableOpacity>
                     <Modal
                         animationType="fade"
@@ -182,6 +174,14 @@ export default function AddScreen() {
                             </View>
                         </View>
                     </Modal>
+
+                    <Text style={style.label}>URL:</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Enter URL"
+                        value={url}
+                        onChangeText={setUrl}
+                    />
 
                     <Pressable style={style.addButton} onPress={async () => callAPI()}>
                         <Text style={style.buttonText}>Add Product</Text>
@@ -220,6 +220,13 @@ const style = StyleSheet.create({
         marginTop: 10,
         marginBottom: 5,
     },
+    text: {
+        fontSize: 20,
+        color: 'black',
+        textAlign: "center",
+        paddingLeft: 5,
+        paddingBottom: 5,
+    },
     input: {
         borderWidth: 1,
         borderColor: 'gray',
@@ -246,10 +253,8 @@ const style = StyleSheet.create({
         height: 40,
         borderRadius: 5,
         marginBottom: 10,
-        backgroundColor: 'blue',
-        alignItems:"center",
-        justifyContent:"center",
-        fontSize:20,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
     },
     pickerAndroid: {
         borderWidth: 1,
@@ -258,7 +263,8 @@ const style = StyleSheet.create({
         height: 40,
         borderRadius: 5,
         marginBottom: 10,
-        backgroundColor: 'green',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
     },
     centeredView: {
         flex: 1,
