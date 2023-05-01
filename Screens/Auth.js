@@ -73,13 +73,6 @@ export default function AuthScreen({ navigation }) {
                     <Text>Sign Up</Text>
                 </Pressable>
             </View>
-
-            <Pressable
-                style={style.logIn}
-                onPress={() => navigation.navigate("Home")}
-            >
-                <Text>Sign Up</Text>
-            </Pressable>
         </View>
 
     );
@@ -126,6 +119,6 @@ const style = StyleSheet.create({
         borderColor: "black",
         padding: 3,
         width: 400,
-        color: "white",
+        color: "black",
     },
 });

@@ -1,17 +1,45 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 
-export default function SignupScreen() {
+export default function SignupScreen({navigation}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [isSignUp, setSignup] = useState(false);
 
-    const handleSignup = () => {
-        if (username && password && password === confirmPassword) {
-            // TODO: handle signup logic
-            navigation.navigate("Home"); // navigate to the home screen after signup
+    const callAPI = async () => {
+        try {
+            const res = await fetch(
+                `https://61c9-2001-bb6-c409-4700-506d-632f-b128-6282.ngrok-free.app/users/register`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    }) // Need to use POST to send body
+                }
+            )
+            if(res.status == 201)
+            {
+                setSignup(true);
+            }
+            setUsername("");
+            setPassword("");
+        } catch (err) {
+            console.log(err);
         }
-    };
+    }
+
+    useEffect(() => {
+        if (isSignUp) {
+            navigation.navigate("auth");
+            setSignup(false);
+        }
+    }, [isSignUp]);
 
     return (
         <View style={style.auth}>
@@ -19,24 +47,17 @@ export default function SignupScreen() {
             <TextInput
                 style={style.textInput}
                 placeholder="Username"
-                value={username}
-                onChangeText={setUsername} 
+                defaultValue={username}
+                onChangeText={user => setUsername(user)}
             />
             <TextInput
                 style={style.textInput}
                 placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
+                defaultValue={password}
+                onChangeText={pass => setPassword(pass)}
                 secureTextEntry={true}
             />
-            <TextInput
-                style={style.textInput}
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-                secureTextEntry={true}
-            />
-            <Pressable style={style.logIn} onPress={handleSignup}>
+            <Pressable style={style.logIn} onPress={async () => callAPI()}>
                 <Text style={style.text}>Sign Up</Text>
             </Pressable>
         </View>
@@ -57,7 +78,7 @@ const style = StyleSheet.create({
         borderColor: "black",
         padding: 3,
         width: 400,
-        color: "white",
+        color: "black",
     },
     logIn: {
         backgroundColor: "pink",
