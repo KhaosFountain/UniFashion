@@ -12,6 +12,7 @@ import {
     FlatList,
 } from 'react-native';
 
+import { Picker } from '@react-native-picker/picker';
 
 
 
@@ -25,9 +26,35 @@ export default function AddScreen() {
     const [typeModalVisible, setTypeModalVisible] = useState(false);
 
 
-    const AddProduct = () => {
-        //gotta figure out how to do ths
-    };
+    const callAPI = async () => {
+        try {
+            const res = await fetch(
+                "http://54.167.138.208:8000/products/create",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+                    },
+                    body: JSON.stringify({
+                        productTitle: type,
+                        color: color,
+                        url: url,
+                        productName: name,
+                        price: price,
+                    }) // Need to use POST to send body
+                }
+            )
+            setName("");
+            setPrice("");
+            setColor("");
+            setUrl("");
+            setType("");
+        } catch (err) {
+            console.log(err);
+            navigation.navigate("signup")
+        }
+    }
 
 
     const pickerStyles = Platform.OS === 'ios' ? style.pickerIOS : style.pickerAndroid;
@@ -99,7 +126,7 @@ export default function AddScreen() {
                         }}
                         style={pickerStyles}
                     >
-                        <Text style = {style.text}>{color || 'Select color    '} {"\u25BE"}</Text>
+                        <Text>{color || 'Select color'}</Text>
                     </TouchableOpacity>
                     <Modal
                         animationType="fade"
@@ -120,6 +147,14 @@ export default function AddScreen() {
                         </View>
                     </Modal>
 
+                    <Text style={style.label}>URL:</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Enter URL"
+                        value={url}
+                        onChangeText={setUrl}
+                    />
+
                     <Text style={style.label}>Cloth Type:</Text>
                     <TouchableOpacity
                         onPress={() => {
@@ -127,7 +162,7 @@ export default function AddScreen() {
                         }}
                         style={pickerStyles}
                     >
-                        <Text style = {style.text}>{type || 'Select type     '} {"\u25BE"}</Text>
+                        <Text>{type || 'Select type'}</Text>
                     </TouchableOpacity>
                     <Modal
                         animationType="fade"
@@ -148,17 +183,7 @@ export default function AddScreen() {
                         </View>
                     </Modal>
 
-                    <Text style={style.label}>URL:</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Enter URL"
-                        value={url}
-                        onChangeText={setUrl}
-                    />
-
-                    
-
-                    <Pressable style={style.addButton} onPress={AddProduct}>
+                    <Pressable style={style.addButton} onPress={async () => callAPI()}>
                         <Text style={style.buttonText}>Add Product</Text>
                     </Pressable>
                 </View>
@@ -214,10 +239,6 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
-    text: {
-        fontSize: 20,
-        paddingLeft: 20,
-    },
     pickerIOS: {
         borderWidth: 1,
         borderColor: 'gray',
@@ -225,8 +246,10 @@ const style = StyleSheet.create({
         height: 40,
         borderRadius: 5,
         marginBottom: 10,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
+        backgroundColor: 'blue',
+        alignItems:"center",
+        justifyContent:"center",
+        fontSize:20,
     },
     pickerAndroid: {
         borderWidth: 1,
@@ -235,8 +258,7 @@ const style = StyleSheet.create({
         height: 40,
         borderRadius: 5,
         marginBottom: 10,
-        alignItems: 'flex-start',
-        justifyContent: 'center',
+        backgroundColor: 'green',
     },
     centeredView: {
         flex: 1,
