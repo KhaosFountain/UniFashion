@@ -22,8 +22,7 @@ export default function AuthScreen({ navigation }) {
                     }) // Need to use POST to send body
                 }
             )
-            if(res.status == 201)
-            {
+            if (res.status == 201) {
                 setLogin(true);
             }
             setUsername("");

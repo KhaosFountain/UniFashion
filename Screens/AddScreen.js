@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
-import ModalDropdown from 'react-native-modal-dropdown';
 
 
 
@@ -25,6 +24,7 @@ export default function AddScreen() {
     };
 
 
+    const pickerStyles = Platform.OS === 'ios' ? style.pickerIOS : style.pickerAndroid;
 
 
     return (
@@ -52,7 +52,7 @@ export default function AddScreen() {
                     <Picker
                         selectedValue={color}
                         onValueChange={(itemValue) => setColor(itemValue)}
-                        style={style.picker}
+                        style={pickerStyles}
                     >
                         <Picker.Item label="Black" value="black" />
                         <Picker.Item label="White" value="white" />
@@ -73,7 +73,7 @@ export default function AddScreen() {
                     <Picker
                         selectedValue={type}
                         onValueChange={(itemValue) => setType(itemValue)}
-                        style={style.picker}
+                        style={pickerStyles}
                     >
                         <Picker.Item label="T-Shirt" value="t-shirt" />
                         <Picker.Item label="Shirt" value="shirt" />
@@ -146,17 +146,21 @@ const style = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
     },
-    dropdown: {
+    pickerIOS:{
+        borderWidth: 1,
+        borderColor: 'gray',
         width: '80%',
-        height: 20,
-        borderWidth: 2,
-        backgroundColor: 'grey',
+        height: 40,
+        borderRadius: 5,
+        marginBottom: 10,
     },
-    dropdownMenu: {
-        fontSize: 20,
-        borderWidth: 3,
-        borderColor: 'pink',
-        height: 100,
+    pickerAndroid:{
+        borderWidth: 1,
+        borderColor: 'gray',
         width: '80%',
-    }
+        height: 40,
+        borderRadius: 5,
+        marginBottom: 10,
+        backgroundColor: 'green',
+    },
 });
