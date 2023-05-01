@@ -6,16 +6,22 @@ import {
   Pressable,
   Image,
   ScrollView,
+  Button,
+  TouchableOpacity,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { useState } from "react";
 
 //screens
 import ViewScreen from "./Screens/ViewScreen";
 import SignupScreen from "./Screens/Signup";
 import AuthScreen from "./Screens/Auth";
 import AddScreen from "./Screens/AddScreen";
+import EditScreen from "./Screens/EditScreen";
+
+//components
+import Popup from "./components/Filter";
 
 const Stack = createNativeStackNavigator();
 
@@ -61,11 +67,26 @@ export default function App() {
             headerStyle: { backgroundColor: "#102820FF" },
             headerTintColor: "white",
             headerTitleAlign: 'center',
+            headerRight: () => {
+              return(
+                <Popup/>
+              );
+          },
           }}
         />
         <Stack.Screen
           name="Add"
           component={AddScreen}
+          options={{
+            title: "Add Clothes",
+            headerStyle: { backgroundColor: "#102820FF" },
+            headerTintColor: "white",
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Stack.Screen
+          name="Edit"
+          component={EditScreen}
           options={{
             title: "Add Clothes",
             headerStyle: { backgroundColor: "#102820FF" },
