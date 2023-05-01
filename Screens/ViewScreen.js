@@ -68,18 +68,16 @@ export default function ViewScreen({navigation}) {
   return (
     <View style={style.container}>
       {products.map((product) => (
-        <View>
+        <View key={product._id}>
           <Image
             source={{ uri: product.url }}
             style={{ width: 200, height: 200 }}
-            key={product._id}
           />
-          <Text key ={product.id}>
+          <Text>
             {product.productTitle}: {product.color} : {product.productName}:{" "}
             {product.price}
           </Text>
           <Pressable
-          key={product.productName}
             style={style.logIn}
             onPress={() => {scheduleNotificationHandler(product.productName); sendPushNotificationHandler();deleteApi(product.productName);}}
           >
