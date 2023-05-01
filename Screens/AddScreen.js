@@ -5,9 +5,12 @@ import {
     TextInput,
     Pressable,
     StyleSheet,
+    ScrollView,
 } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
+import ModalDropdown from 'react-native-modal-dropdown';
+
 
 
 export default function AddScreen() {
@@ -23,82 +26,81 @@ export default function AddScreen() {
 
 
 
-  
+
     return (
-        <View style={style.add}>
-            <Text style={style.title}>Add Screen</Text>
-            <View style={style.box}>
-                <Text style={style.label}>Cloth Name:</Text>
-                <TextInput
-                    style={style.input}
-                    placeholder="Enter cloth name"
-                    value={name}
-                    onChangeText={setName}
-                />
+        <ScrollView style = {style.scroll}>
+            <View style={style.add}>
+                <Text style={style.title}>Add Details</Text>
+                <View style={style.box}>
+                    <Text style={style.label}>Cloth Name:</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Enter cloth name"
+                        value={name}
+                        onChangeText={setName}
+                    />
 
-                <Text style={style.label}>Cloth Price:</Text>
-                <TextInput
-                    style={style.input}
-                    placeholder="Enter cloth price"
-                    value={price}
-                    onChangeText={setPrice}
-                />
+                    <Text style={style.label}>Cloth Price:</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Enter cloth price"
+                        value={price}
+                        onChangeText={setPrice}
+                    />
 
-                <Text style={style.label}>Cloth Color:</Text>
-                <Picker
-                    selectedValue={color}
-                    onValueChange={(itemValue) => setColor(itemValue)}
-                    style={style.picker}
-                >
-                    <Picker.Item label="Black" value="black" />
-                    <Picker.Item label="White" value="white" />
-                    <Picker.Item label="Red" value="red" />
-                    <Picker.Item label="Green" value="green" />
-                    <Picker.Item label="Blue" value="blue" />
-                </Picker>
-                 <MultipleSelectList 
-        setSelected={(val) => setSelected(val)} 
-        data={data} 
-        save="value"
-        onSelect={() => alert(selected)} 
-        label="Categories"
-    />
+                    <Text style={style.label}>Cloth Color:</Text>
+                    <Picker
+                        selectedValue={color}
+                        onValueChange={(itemValue) => setColor(itemValue)}
+                        style={style.picker}
+                    >
+                        <Picker.Item label="Black" value="black" />
+                        <Picker.Item label="White" value="white" />
+                        <Picker.Item label="Red" value="red" />
+                        <Picker.Item label="Green" value="green" />
+                        <Picker.Item label="Blue" value="blue" />
+                    </Picker>
 
-                <Text style={style.label}>URL:</Text>
-                <TextInput
-                    style={style.input}
-                    placeholder="Enter URL"
-                    value={url}
-                    onChangeText={setUrl}
-                />
+                    <Text style={style.label}>URL:</Text>
+                    <TextInput
+                        style={style.input}
+                        placeholder="Enter URL"
+                        value={url}
+                        onChangeText={setUrl}
+                    />
 
-                <Text style={style.label}>Cloth Type:</Text>
-                <Picker
-                    selectedValue={type}
-                    onValueChange={(itemValue) => setType(itemValue)}
-                    style={style.picker}
-                >
-                    <Picker.Item label="T-Shirt" value="t-shirt" />
-                    <Picker.Item label="Shirt" value="shirt" />
-                    <Picker.Item label="Shoe" value="shoe" />
-                    <Picker.Item label="Pants" value="pants" />
-                    <Picker.Item label="Shorts" value="shorts" />
-                </Picker>
+                    <Text style={style.label}>Cloth Type:</Text>
+                    <Picker
+                        selectedValue={type}
+                        onValueChange={(itemValue) => setType(itemValue)}
+                        style={style.picker}
+                    >
+                        <Picker.Item label="T-Shirt" value="t-shirt" />
+                        <Picker.Item label="Shirt" value="shirt" />
+                        <Picker.Item label="Shoe" value="shoe" />
+                        <Picker.Item label="Pants" value="pants" />
+                        <Picker.Item label="Shorts" value="shorts" />
+                    </Picker>
 
-                <Pressable style={style.addButton} onPress={AddProduct}>
-                    <Text style={style.buttonText}>Add Product</Text>
-                </Pressable>
+                    <Pressable style={style.addButton} onPress={AddProduct}>
+                        <Text style={style.buttonText}>Add Product</Text>
+                    </Pressable>
+                </View>
             </View>
-        </View>
+        </ScrollView>
+
     );
 }
 
 const style = StyleSheet.create({
+    scroll:{
+        backgroundColor: 'black',
+    },
     add: {
-        flex: 1,
         justifyContent: "space-evenly",
         alignItems: "center",
         backgroundColor: "#fef4e8",
+        height: 900,
     },
     title: {
         alignItems: 'center',
@@ -143,5 +145,18 @@ const style = StyleSheet.create({
         height: 40,
         borderRadius: 5,
         marginBottom: 10,
-      },
+    },
+    dropdown: {
+        width: '80%',
+        height: 20,
+        borderWidth: 2,
+        backgroundColor: 'grey',
+    },
+    dropdownMenu: {
+        fontSize: 20,
+        borderWidth: 3,
+        borderColor: 'pink',
+        height: 100,
+        width: '80%',
+    }
 });
