@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import {
     View,
@@ -12,69 +13,30 @@ import {
     FlatList,
 } from 'react-native';
 
-import { Picker } from '@react-native-picker/picker';
 
-
-
-export default function AddScreen() {
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState("");
-    const [color, setColor] = useState("");
-    const [url, setUrl] = useState("");
-    const [type, setType] = useState("");
+export default function FilterBody({ show, isShown }) {
     const [colorModalVisible, setColorModalVisible] = useState(false);
     const [typeModalVisible, setTypeModalVisible] = useState(false);
-
-
-    const callAPI = async () => {
-        try {
-            const res = await fetch(
-                "http://54.167.138.208:8000/products/create",
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
-                    },
-                    body: JSON.stringify({
-                        productTitle: type,
-                        color: color,
-                        url: url,
-                        productName: name,
-                        price: price,
-                    }) // Need to use POST to send body
-                }
-            )
-            setName("");
-            setPrice("");
-            setColor("");
-            setUrl("");
-            setType("");
-        } catch (err) {
-            console.log(err);
-            navigation.navigate("signup")
-        }
-    }
-
+    const [color, setColor] = useState("");
+    const [type, setType] = useState("");
 
     const pickerStyles = Platform.OS === 'ios' ? style.pickerIOS : style.pickerAndroid;
 
     const colors = [
-        { label: 'Black', value: 'black' },
-        { label: 'White', value: 'white' },
-        { label: 'Red', value: 'red' },
-        { label: 'Green', value: 'green' },
-        { label: 'Blue', value: 'blue' },
+        { label: 'Black', value: 'Black' },
+        { label: 'White', value: 'White' },
+        { label: 'Red', value: 'Red' },
+        { label: 'Green', value: 'Green' },
+        { label: 'Blue', value: 'Blue' },
     ];
 
     const clothingTypes = [
-        { label: 'T-Shirt', value: 't-shirt' },
-        { label: 'Shirt', value: 'shirt' },
-        { label: 'Shoe', value: 'shoe' },
-        { label: 'Pants', value: 'pants' },
-        { label: 'Shorts', value: 'shorts' },
+        { label: 'T-Shirt', value: 'T-Shirt' },
+        { label: 'Shirt', value: 'Shirt' },
+        { label: 'Shoe', value: 'Shoe' },
+        { label: 'Pants', value: 'Pants' },
+        { label: 'Shorts', value: 'Shorts' },
     ];
-
 
     const renderItemColor = ({ item }) => (
         <TouchableOpacity
@@ -99,34 +61,19 @@ export default function AddScreen() {
     );
 
     return (
-        <ScrollView style={style.scroll}>
-            <View style={style.add}>
-                <Text style={style.title}>Add Details</Text>
-                <View style={style.box}>
-                    <Text style={style.label}>Cloth Name:</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Enter cloth name"
-                        value={name}
-                        onChangeText={setName}
-                    />
+        <>
 
-                    <Text style={style.label}>Cloth Price:</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Enter cloth price"
-                        value={price}
-                        onChangeText={setPrice}
-                    />
-
-                    <Text style={style.label}>Cloth Color:</Text>
+            <View style={style.container}>
+                <Text style={style.title}>Filter Menu</Text>
+                <View style={style.filter}>
+                    <Text style={style.text}>Color:</Text>
                     <TouchableOpacity
                         onPress={() => {
                             setColorModalVisible(true);
                         }}
                         style={pickerStyles}
                     >
-                        <Text style = {style.text}>{color || 'Select color    '} {"\u25BE"}</Text>
+                        <Text style={style.text}>{color || 'Select color   '}  {"\u25BE"}</Text>
                     </TouchableOpacity>
                     <Modal
                         animationType="fade"
@@ -146,15 +93,17 @@ export default function AddScreen() {
                             </View>
                         </View>
                     </Modal>
+                </View>
 
-                    <Text style={style.label}>Cloth Type:</Text>
+                <View style={style.filter}>
+                    <Text style={style.text}>Cloth Type:</Text>
                     <TouchableOpacity
                         onPress={() => {
                             setTypeModalVisible(true);
                         }}
                         style={pickerStyles}
                     >
-                        <Text style = {style.text}>{type || 'Select type     '} {"\u25BE"}</Text>
+                        <Text style={style.text}>{type || 'Select type    '} {"\u25BE"}</Text>
                     </TouchableOpacity>
                     <Modal
                         animationType="fade"
@@ -174,77 +123,49 @@ export default function AddScreen() {
                             </View>
                         </View>
                     </Modal>
+                </View>
 
-                    <Text style={style.label}>URL:</Text>
-                    <TextInput
-                        style={style.input}
-                        placeholder="Enter URL"
-                        value={url}
-                        onChangeText={setUrl}
-                    />
-
-                    <Pressable style={style.addButton} onPress={async () => callAPI()}>
-                        <Text style={style.buttonText}>Add Product</Text>
+                <View style={style.buttons}>
+                    <Pressable style={style.filterBtn} onPress={() => { isShown(!show) }}>
+                        <Text style={style.text}>Filter</Text>
+                    </Pressable>
+                    <Pressable style={style.closeBtn} onPress={() => { isShown(!show) }}>
+                        <Text style={style.closeTxt}>Close</Text>
                     </Pressable>
                 </View>
             </View>
-        </ScrollView>
 
+
+        </>
     );
+
 }
 
 const style = StyleSheet.create({
-    scroll: {
+    container: {
+        flex: 1,
+        justifyContent: 'space-around',
         backgroundColor: 'black',
     },
-    add: {
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        backgroundColor: "#fef4e8",
-        height: 900,
-    },
     title: {
-        alignItems: 'center',
-        fontSize: 30,
-    },
-    box: {
-        borderWidth: 2,
-        borderColor: 'black',
-        width: 400,
-        height: 600,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    label: {
-        fontSize: 20,
-        marginTop: 10,
-        marginBottom: 5,
+        fontSize: 40,
+        textAlign: 'center',
+        color: '#D64161FF',
     },
     text: {
         fontSize: 20,
-        color: 'black',
+        color: 'white',
         textAlign: "center",
         paddingLeft: 5,
         paddingBottom: 5,
+        color: '#FC766AFF',
     },
-    input: {
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: '80%',
-        height: 40,
-        padding: 10,
-        marginBottom: 10,
-    },
-    addButton: {
-        backgroundColor: '#101820FF',
-        borderRadius: 5,
-        padding: 10,
-        marginTop: 20,
-    },
-    buttonText: {
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 16,
+    filter: {
+        flex: .25,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        paddingLeft: 10,
+        width: '70%',
     },
     pickerIOS: {
         borderWidth: 1,
@@ -287,7 +208,35 @@ const style = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
-    pickerItem:{
+    pickerItem: {
         fontSize: 30,
+    },
+    buttons: {
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        marginTop: 50,
+    },
+    filterBtn: {
+        backgroundColor: '#000000FF',
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: 'white',
+        padding: 5,
+        alignSelf: "center",
+        width: 70,
+    },
+    closeBtn: {
+        backgroundColor: '#D64161FF',
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: 'white',
+        padding: 5,
+        alignSelf: "center",
+        width: 70,
+    },
+    closeTxt: {
+        color: 'white',
+        fontSize: 20,
+        textAlign: "center",
     }
 });
