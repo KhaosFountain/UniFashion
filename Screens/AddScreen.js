@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
-import { MultipleSelectList } from 'react-native-dropdown-select-list'
 
 
 export default function AddScreen() {
@@ -23,15 +22,7 @@ export default function AddScreen() {
     };
 
 
-    const data = [
-        {key:'1', value:'Mobiles', disabled:true},
-        {key:'2', value:'Appliances'},
-        {key:'3', value:'Cameras'},
-        {key:'4', value:'Computers', disabled:true},
-        {key:'5', value:'Vegetables'},
-        {key:'6', value:'Diary Products'},
-        {key:'7', value:'Drinks'},
-    ]
+
   
     return (
         <View style={style.add}>
@@ -54,7 +45,7 @@ export default function AddScreen() {
                 />
 
                 <Text style={style.label}>Cloth Color:</Text>
-                {/* <Picker
+                <Picker
                     selectedValue={color}
                     onValueChange={(itemValue) => setColor(itemValue)}
                     style={style.picker}
@@ -64,7 +55,7 @@ export default function AddScreen() {
                     <Picker.Item label="Red" value="red" />
                     <Picker.Item label="Green" value="green" />
                     <Picker.Item label="Blue" value="blue" />
-                </Picker> */}
+                </Picker>
                  <MultipleSelectList 
         setSelected={(val) => setSelected(val)} 
         data={data} 
@@ -82,7 +73,7 @@ export default function AddScreen() {
                 />
 
                 <Text style={style.label}>Cloth Type:</Text>
-                {/* <Picker
+                <Picker
                     selectedValue={type}
                     onValueChange={(itemValue) => setType(itemValue)}
                     style={style.picker}
@@ -92,7 +83,7 @@ export default function AddScreen() {
                     <Picker.Item label="Shoe" value="shoe" />
                     <Picker.Item label="Pants" value="pants" />
                     <Picker.Item label="Shorts" value="shorts" />
-                </Picker> */}
+                </Picker>
 
                 <Pressable style={style.addButton} onPress={AddProduct}>
                     <Text style={style.buttonText}>Add Product</Text>
