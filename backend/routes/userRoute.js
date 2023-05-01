@@ -5,11 +5,17 @@ const bcrypt = require("bcryptjs")
 
 
 router.post('/register', async (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
+  const username = req.body.username;
+  const password = req.body.password;
 
+  if (!username || !password) {
+    return res.status(400).json({ message: "Username and password cannot be empty" });
+  }
+
+  const user = new User({
+    username: username,
+    password: password
+  });
   try {
     bcrypt.hash(user.password,10).then(async (hash)=>{
       const newUser = await User.create({
@@ -21,6 +27,7 @@ router.post('/register', async (req, res) => {
     console.log(req.body)
   } catch (err) {
     res.status(400).json({ message: err.message });
+
   }
 });
 

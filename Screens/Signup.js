@@ -31,6 +31,7 @@ export default function SignupScreen({navigation}) {
             setPassword("");
         } catch (err) {
             console.log(err);
+            navigation.navigate("signup")
         }
     }
 
