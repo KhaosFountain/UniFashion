@@ -1,11 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Pressable, StyleSheet, Image } from 'react-native';
-
-
 
 export default function AuthScreen({ navigation }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [isLogin, setLogin] = useState(false);
+
+    const callAPI = async () => {
+        try {
+            const res = await fetch(
+                `https://61c9-2001-bb6-c409-4700-506d-632f-b128-6282.ngrok-free.app/users/login`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "ngrok-skip-browser-warning": "69420" // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    }) // Need to use POST to send body
+                }
+            )
+            if(res.status == 201)
+            {
+                setLogin(true);
+            }
+            setUsername("");
+            setPassword("");
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+
+    useEffect(() => {
+        if (isLogin) {
+            navigation.navigate("Home");
+            setLogin(false);
+        }
+    }, [isLogin]);
 
     return (
         <View style={style.auth}>
@@ -16,17 +50,17 @@ export default function AuthScreen({ navigation }) {
             <TextInput
                 style={style.textInput}
                 placeholder="Username"
-                value={username}
-                onChangeText={setUsername}
+                defaultValue={username}
+                onChangeText={user => setUsername(user)}
             />
             <TextInput
                 style={style.textInput}
                 placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
+                defaultValue={password}
+                onChangeText={pass => setPassword(pass)}
                 secureTextEntry={true}
             />
-            <Pressable style={style.logIn}>
+            <Pressable style={style.logIn} onPress={() => callAPI()}>
                 <Text style={style.text}>Log In</Text>
             </Pressable>
 
@@ -39,14 +73,8 @@ export default function AuthScreen({ navigation }) {
                     <Text>Sign Up</Text>
                 </Pressable>
             </View>
-
-            <Pressable
-                style={style.logIn}
-                onPress={() => navigation.navigate("Home")}
-            >
-                <Text>Sign Up</Text>
-            </Pressable>
         </View>
+
     );
 }
 
@@ -91,6 +119,6 @@ const style = StyleSheet.create({
         borderColor: "black",
         padding: 3,
         width: 400,
-        color: "white",
+        color: "black",
     },
 });

@@ -9,17 +9,21 @@ import {
 
 import { Picker } from '@react-native-picker/picker';
 
+
 export default function AddScreen() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [color, setColor] = useState("");
     const [url, setUrl] = useState("");
     const [type, setType] = useState("");
-
+    const [selected, setSelected] = useState([]);
     const AddProduct = () => {
         //gotta figure out how to do ths
     };
 
+
+
+  
     return (
         <View style={style.add}>
             <Text style={style.title}>Add Screen</Text>
@@ -52,6 +56,13 @@ export default function AddScreen() {
                     <Picker.Item label="Green" value="green" />
                     <Picker.Item label="Blue" value="blue" />
                 </Picker>
+                 <MultipleSelectList 
+        setSelected={(val) => setSelected(val)} 
+        data={data} 
+        save="value"
+        onSelect={() => alert(selected)} 
+        label="Categories"
+    />
 
                 <Text style={style.label}>URL:</Text>
                 <TextInput

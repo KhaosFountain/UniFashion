@@ -1,20 +1,14 @@
 import React from "react";
 import {
   StyleSheet,
-  Button,
   Text,
   View,
-  TextInput,
   Pressable,
   Image,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { useState } from "react";
-import Header from "./components/header";
-import Boxes from "./components/Boxes";
-import Popup from "./components/Popup/modal";
 
 //screens
 import ViewScreen from "./Screens/ViewScreen";
@@ -25,39 +19,8 @@ import AddScreen from "./Screens/AddScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [auth, setAuth] = useState(false);
-
-  const handleAuthentication = () => {
-    if (username === "user" && password === "password") {
-      setAuth(true);
-    }
-  };
-
   return (
     <NavigationContainer>
-      {auth ? (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              title: "Home",
-              headerStyle: { backgroundColor: "#101820FF" },
-              headerTintColor: "white",
-            }}
-          />
-          <Stack.Screen
-            name="View"
-            component={ViewScreen}
-            options={{
-              title: "View",
-              headerStyle: { backgroundColor: "#102820FF" },
-              headerTintColor: "white",
-            }}
-          />
-        </Stack.Navigator>
-      ) : (
-        <>
           <Stack.Navigator>
             <Stack.Screen
               name="auth"
@@ -110,9 +73,6 @@ export default function App() {
               }}
             />
           </Stack.Navigator>
-
-        </>
-      )}
     </NavigationContainer>
 
   );
@@ -141,6 +101,11 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text style={style.text}>View Product</Text>
       </Pressable>
+
+      <Image 
+        source={{ uri: 'https://b.fssta.com/uploads/application/nba/headshots/1120.vresize.350.350.medium.98.png' }}
+        style={{ width: 200, height: 200 }}
+      />
     </View>
   );
 };
