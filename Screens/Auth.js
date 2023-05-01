@@ -71,6 +71,10 @@ export default function AuthScreen({ navigation }) {
                 >
                     <Text>Sign Up</Text>
                 </Pressable>
+                <Pressable
+                    onPress={() => navigation.navigate("Home")}
+                    style={style.logIn}
+                ></Pressable>
             </View>
         </View>
 

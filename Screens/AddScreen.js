@@ -6,6 +6,10 @@ import {
     Pressable,
     StyleSheet,
     ScrollView,
+    Platform,
+    TouchableOpacity,
+    Modal,
+    FlatList,
 } from 'react-native';
 
 import { Picker } from '@react-native-picker/picker';
@@ -18,7 +22,10 @@ export default function AddScreen() {
     const [color, setColor] = useState("");
     const [url, setUrl] = useState("");
     const [type, setType] = useState("");
-    const [selected, setSelected] = useState([]);
+    const [colorModalVisible, setColorModalVisible] = useState(false);
+    const [typeModalVisible, setTypeModalVisible] = useState(false);
+
+
     const AddProduct = () => {
         //gotta figure out how to do ths
     };
@@ -26,9 +33,47 @@ export default function AddScreen() {
 
     const pickerStyles = Platform.OS === 'ios' ? style.pickerIOS : style.pickerAndroid;
 
+    const colors = [
+        { label: 'Black', value: 'black' },
+        { label: 'White', value: 'white' },
+        { label: 'Red', value: 'red' },
+        { label: 'Green', value: 'green' },
+        { label: 'Blue', value: 'blue' },
+    ];
+
+    const clothingTypes = [
+        { label: 'T-Shirt', value: 't-shirt' },
+        { label: 'Shirt', value: 'shirt' },
+        { label: 'Shoe', value: 'shoe' },
+        { label: 'Pants', value: 'pants' },
+        { label: 'Shorts', value: 'shorts' },
+    ];
+
+
+    const renderItemColor = ({ item }) => (
+        <TouchableOpacity
+            onPress={() => {
+                setColor(item.value);
+                setColorModalVisible(false);
+            }}
+        >
+            <Text style={style.pickerItem}>{item.label}</Text>
+        </TouchableOpacity>
+    );
+
+    const renderItemType = ({ item }) => (
+        <TouchableOpacity
+            onPress={() => {
+                setType(item.value);
+                setTypeModalVisible(false);
+            }}
+        >
+            <Text style={style.pickerItem}>{item.label}</Text>
+        </TouchableOpacity>
+    );
 
     return (
-        <ScrollView style = {style.scroll}>
+        <ScrollView style={style.scroll}>
             <View style={style.add}>
                 <Text style={style.title}>Add Details</Text>
                 <View style={style.box}>
@@ -49,17 +94,32 @@ export default function AddScreen() {
                     />
 
                     <Text style={style.label}>Cloth Color:</Text>
-                    <Picker
-                        selectedValue={color}
-                        onValueChange={(itemValue) => setColor(itemValue)}
+                    <TouchableOpacity
+                        onPress={() => {
+                            setColorModalVisible(true);
+                        }}
                         style={pickerStyles}
                     >
-                        <Picker.Item label="Black" value="black" />
-                        <Picker.Item label="White" value="white" />
-                        <Picker.Item label="Red" value="red" />
-                        <Picker.Item label="Green" value="green" />
-                        <Picker.Item label="Blue" value="blue" />
-                    </Picker>
+                        <Text>{color || 'Select color'}</Text>
+                    </TouchableOpacity>
+                    <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={colorModalVisible}
+                        onRequestClose={() => {
+                            setColorModalVisible(false);
+                        }}
+                    >
+                        <View style={style.centeredView}>
+                            <View style={style.modalView}>
+                                <FlatList
+                                    data={colors}
+                                    renderItem={renderItemColor}
+                                    keyExtractor={(item) => item.value}
+                                />
+                            </View>
+                        </View>
+                    </Modal>
 
                     <Text style={style.label}>URL:</Text>
                     <TextInput
@@ -70,17 +130,32 @@ export default function AddScreen() {
                     />
 
                     <Text style={style.label}>Cloth Type:</Text>
-                    <Picker
-                        selectedValue={type}
-                        onValueChange={(itemValue) => setType(itemValue)}
+                    <TouchableOpacity
+                        onPress={() => {
+                            setTypeModalVisible(true);
+                        }}
                         style={pickerStyles}
                     >
-                        <Picker.Item label="T-Shirt" value="t-shirt" />
-                        <Picker.Item label="Shirt" value="shirt" />
-                        <Picker.Item label="Shoe" value="shoe" />
-                        <Picker.Item label="Pants" value="pants" />
-                        <Picker.Item label="Shorts" value="shorts" />
-                    </Picker>
+                        <Text>{type || 'Select type'}</Text>
+                    </TouchableOpacity>
+                    <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={typeModalVisible}
+                        onRequestClose={() => {
+                            setTypeModalVisible(false);
+                        }}
+                    >
+                        <View style={style.centeredView}>
+                            <View style={style.modalView}>
+                                <FlatList
+                                    data={clothingTypes}
+                                    renderItem={renderItemType}
+                                    keyExtractor={(item) => item.value}
+                                />
+                            </View>
+                        </View>
+                    </Modal>
 
                     <Pressable style={style.addButton} onPress={AddProduct}>
                         <Text style={style.buttonText}>Add Product</Text>
@@ -93,7 +168,7 @@ export default function AddScreen() {
 }
 
 const style = StyleSheet.create({
-    scroll:{
+    scroll: {
         backgroundColor: 'black',
     },
     add: {
@@ -138,7 +213,7 @@ const style = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
-    picker: {
+    pickerIOS: {
         borderWidth: 1,
         borderColor: 'gray',
         width: '80%',
@@ -146,15 +221,7 @@ const style = StyleSheet.create({
         borderRadius: 5,
         marginBottom: 10,
     },
-    pickerIOS:{
-        borderWidth: 1,
-        borderColor: 'gray',
-        width: '80%',
-        height: 40,
-        borderRadius: 5,
-        marginBottom: 10,
-    },
-    pickerAndroid:{
+    pickerAndroid: {
         borderWidth: 1,
         borderColor: 'gray',
         width: '80%',
@@ -163,4 +230,28 @@ const style = StyleSheet.create({
         marginBottom: 10,
         backgroundColor: 'green',
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: 'grey',
+        backgroundColor: 'rgba(128, 128, 128, 0.5)',
+        marginTop: 56,
+    },
+    modalView: {
+        backgroundColor: 'white',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    pickerItem:{
+        fontSize: 30,
+    }
 });
