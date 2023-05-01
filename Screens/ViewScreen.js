@@ -74,7 +74,7 @@ export default function ViewScreen({navigation}) {
             style={{ width: 200, height: 200 }}
             key={product._id}
           />
-          <Text>
+          <Text key ={product.id}>
             {product.productTitle}: {product.color} : {product.productName}:{" "}
             {product.price}
           </Text>
