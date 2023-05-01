@@ -115,6 +115,11 @@ const HomeScreen = ({ navigation }) => {
       >
         <Text style={style.text}>View Product</Text>
       </Pressable>
+
+      <Image 
+        source={{ uri: 'https://b.fssta.com/uploads/application/nba/headshots/1120.vresize.350.350.medium.98.png' }}
+        style={{ width: 200, height: 200 }}
+      />
     </View>
   );
 };
