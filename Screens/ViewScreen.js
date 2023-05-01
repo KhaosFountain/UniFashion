@@ -17,7 +17,7 @@ export default function ViewScreen({navigation}) {
   const callAPI = async () => {
     try {
       const res = await fetch(
-        `https://61c9-2001-bb6-c409-4700-506d-632f-b128-6282.ngrok-free.app/products`,
+        `http://54.167.138.208:8000/products`,
         {
           method: "GET",
           headers: {
@@ -37,7 +37,7 @@ export default function ViewScreen({navigation}) {
   const deleteApi = async (name) => {
     try {
       await fetch(
-        `https://61c9-2001-bb6-c409-4700-506d-632f-b128-6282.ngrok-free.app/products/delete/${name}`,
+        `http://54.167.138.208:8000/products/delete/${name}`,
         {
           method: "DELETE",
           headers:  {
@@ -79,6 +79,7 @@ export default function ViewScreen({navigation}) {
             {product.price}
           </Text>
           <Pressable
+          key={product.productName}
             style={style.logIn}
             onPress={() => {scheduleNotificationHandler(product.productName); sendPushNotificationHandler();deleteApi(product.productName);}}
           >

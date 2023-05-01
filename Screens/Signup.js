@@ -10,7 +10,7 @@ export default function SignupScreen({navigation}) {
     const callAPI = async () => {
         try {
             const res = await fetch(
-                `https://61c9-2001-bb6-c409-4700-506d-632f-b128-6282.ngrok-free.app/users/register`,
+                `http://54.167.138.208:8000/users/register`,
                 {
                     method: 'POST',
                     headers: {
