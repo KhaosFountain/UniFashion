@@ -32,23 +32,15 @@ router.post('/create',async(req,res)=>{
     }
 })
 
+
 router.post('/find', async(req, res) => {
+    const findProduct = new Products({
+        productTitle:req.body.productTitle,
+        color:req.body.color,
+        productName:req.body.productName,
+    })
     try {
-        const search = {};
-
-        if (req.body.productTitle) {
-            search.productTitle = req.body.productTitle;
-        }
-
-        if (req.body.color) {
-            search.color = req.body.color;
-        }
-
-        if (req.body.productName) {
-            search.productName = req.body.productName;
-        }
-
-        const find = await Products.find(search);
+        const find = await Products.find(findProduct);
         res.json(find);
     } catch (err) {
         res.json({ message: err.message });
