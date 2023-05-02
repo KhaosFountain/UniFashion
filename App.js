@@ -33,9 +33,10 @@ export default function App() {
           name="auth"
           component={AuthScreen}
           options={{
-            title: "signup",
+            title: "Welcome",
             headerStyle: { backgroundColor: "#102820FF" },
             headerTintColor: "white",
+            headerTitleAlign: 'center',
           }}
         />
 
@@ -43,9 +44,9 @@ export default function App() {
           name="signup"
           component={SignupScreen}
           options={{
-            title: "signup",
-            headerStyle: { backgroundColor: "#102820FF" },
-            headerTintColor: "white",
+            title: "Signup Here",
+            headerStyle: { backgroundColor: "#2E5266FF" },
+            headerTintColor: "#FFA177FF",
             headerTitleAlign: 'center',
           }}
         />
@@ -79,7 +80,7 @@ export default function App() {
           component={AddScreen}
           options={{
             title: "Add Clothes",
-            headerStyle: { backgroundColor: "#102820FF" },
+            headerStyle: { backgroundColor: "#2E5266FF" },
             headerTintColor: "white",
             headerTitleAlign: 'center',
           }}
@@ -114,17 +115,6 @@ const HomeScreen = ({ navigation }) => {
             <Text style={style.text}>Add Product</Text>
           </Pressable>
         </View>
-        <View style={style.section} >
-          <Pressable onPress={() => navigation.navigate("Edit")} style={style.button}>
-            <Text style={style.text}>Edit Product</Text>
-          </Pressable>
-        </View>
-        <View style={style.section}>
-          <Pressable onPress={() => navigation.navigate("Delete")} style={style.button}>
-            <Text style={style.text}>Delete Product</Text>
-          </Pressable>
-        </View>
-
       </View>
     </ScrollView>
 
@@ -134,10 +124,9 @@ const HomeScreen = ({ navigation }) => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "grey",
-    justifyContent: "space-around",
+    backgroundColor: "#fef4e8",
     alignItems: "center",
-    height: 1000,
+    height: 830,
   },
   logIn: {
     backgroundColor: "pink",
