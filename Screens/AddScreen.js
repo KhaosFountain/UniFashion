@@ -13,6 +13,7 @@ import {
 } from "react-native";
 
 import { Picker } from "@react-native-picker/picker";
+import { scheduleBuyNotif, sendPushNotificationHandler } from "../components/notifs";
 
 export default function AddScreen() {
   const [name, setName] = useState("");
@@ -188,7 +189,7 @@ export default function AddScreen() {
           </View>
 
           {/* Add Product Button */}
-          <Pressable style={style.addButton} onPress={async () => callAPI()}>
+          <Pressable style={style.addButton} onPress={async () => {scheduleBuyNotif(name);sendPushNotificationHandler();callAPI()}}>
             <Text style={style.buttonText}>Add Product</Text>
           </Pressable>
         </View>

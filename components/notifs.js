@@ -25,6 +25,20 @@ Notifications.setNotificationHandler({
     });
 }
 
+export async function scheduleBuyNotif(item) {
+  Notifications.scheduleNotificationAsync({
+    content: {
+      title: "Item Purchased",
+      body: `${item} has been added to the store`,
+      data: { userName: 'Richard' },
+    },
+    trigger: {
+      seconds: 1,
+    },
+  });
+}
+
+
    export function sendPushNotificationHandler() {
         fetch('https://exp.host/--/api/v2/push/send', {
           method: 'POST',
