@@ -35,7 +35,6 @@ export default function FilterBody({ show, isShown }) {
         { label: 'Shirt', value: 'Shirt' },
         { label: 'Shoe', value: 'Shoe' },
         { label: 'Pants', value: 'Pants' },
-        { label: 'Shorts', value: 'Shorts' },
     ];
 
     const renderItemColor = ({ item }) => (

@@ -72,7 +72,6 @@ export default function AddScreen() {
         { label: 'Shirt', value: 'shirt' },
         { label: 'Shoe', value: 'shoe' },
         { label: 'Pants', value: 'pants' },
-        { label: 'Shorts', value: 'shorts' },
     ];
 
 

@@ -7,11 +7,12 @@ import {
   TouchableOpacity,
   Button,
   Pressable,
+  ScrollView,
 } from "react-native";
 import { openBrowserAsync } from "expo-web-browser";
-import { scheduleNotificationHandler,sendPushNotificationHandler } from "../components/notifs";
+import { scheduleNotificationHandler, sendPushNotificationHandler } from "../components/notifs";
 
-export default function ViewScreen({navigation}) {
+export default function ViewScreen({ navigation }) {
   const [products, setProducts] = useState([]);
   const [isDeleted, setDeleted] = useState(false)
   const callAPI = async () => {
@@ -40,7 +41,7 @@ export default function ViewScreen({navigation}) {
         `http://54.167.138.208:8000/products/delete/${name}`,
         {
           method: "DELETE",
-          headers:  {
+          headers: {
             "Content-Type": "application/json",
             "ngrok-skip-browser-warning": "69420", // See: https://stackoverflow.com/questions/73017353/how-to-bypass-ngrok-browser-warning
           },
@@ -54,11 +55,11 @@ export default function ViewScreen({navigation}) {
 
   useEffect(() => {
     if (isDeleted) {
-        navigation.navigate("View");
-        setDeleted(false);
-        callAPI();
+      navigation.navigate("View");
+      setDeleted(false);
+      callAPI();
     }
-}, [isDeleted]);
+  }, [isDeleted]);
 
   useEffect(() => {
     callAPI();
@@ -66,26 +67,29 @@ export default function ViewScreen({navigation}) {
   }, []);
 
   return (
-    <View style={style.container}>
-      {products.map((product) => (
-        <View key={product._id}>
-          <Image
-            source={{ uri: product.url }}
-            style={{ width: 200, height: 200 }}
-          />
-          <Text>
-            {product.productTitle}: {product.color} : {product.productName}:{" "}
-            {product.price}
-          </Text>
-          <Pressable
-            style={style.logIn}
-            onPress={() => {scheduleNotificationHandler(product.productName); sendPushNotificationHandler();deleteApi(product.productName);}}
-          >
-            <Text>Delete</Text>
-          </Pressable>
-        </View>
-      ))}
-    </View>
+    <ScrollView>
+      <View style={style.container}>
+        {products.map((product) => (
+          <View key={product._id}>
+            <Image
+              source={{ uri: product.url }}
+              style={{ width: 200, height: 200 }}
+            />
+            <Text>
+              {product.productTitle}: {product.color} : {product.productName}:{" "}
+              {product.price}
+            </Text>
+            <Pressable
+              style={style.logIn}
+              onPress={() => { scheduleNotificationHandler(product.productName); sendPushNotificationHandler(); deleteApi(product.productName); }}
+            >
+              <Text>Buy</Text>
+            </Pressable>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
+
   );
 }
 
