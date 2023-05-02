@@ -67,70 +67,55 @@ export default function ViewScreen({ navigation }) {
   }, []);
 
   return (
-    <ScrollView>
+    <ScrollView flex={1}>
       <View style={style.container}>
         {products.map((product) => (
-          <View key={product._id}>
+          <View style={style.cardContainer} key={product._id}>
             <Image
               source={{ uri: product.url }}
-              style={{ width: 200, height: 200 }}
+              style={style.image}
             />
-            <Text>
-              {product.productTitle}: {product.color} : {product.productName}:{" "}
-              {product.price}
-            </Text>
+            <View style={style.cardTextContainer}>
+              <Text style={style.cardTitle}>Title: {product.productTitle}</Text>
+              <Text style={style.cardSubtitle}>color: {product.color}</Text>
+              <Text style={style.cardName}>name: {product.productName}</Text>
+              <Text style={style.cardPrice}>Price: ${product.price}</Text>
+            </View>
             <Pressable
-              style={style.logIn}
-              onPress={() => { scheduleNotificationHandler(product.productName); sendPushNotificationHandler(); deleteApi(product.productName); }}
+              style={style.buyButton}
+              onPress={() => {
+                scheduleNotificationHandler(product.productName);
+                sendPushNotificationHandler();
+                deleteApi(product.productName);
+              }}
             >
-              <Text>Buy</Text>
+              <Text style={style.buyButtonText}>Buy</Text>
             </Pressable>
           </View>
         ))}
       </View>
     </ScrollView>
-
   );
 }
 
 const style = StyleSheet.create({
   container: {
     width: "100%",
-    height: "85%",
-    padding: 5,
+    height: "100%",
+    padding: 10,
     flexDirection: "row",
     flexWrap: "wrap",
-  },
-  box: {
-    width: "50%",
-    height: "50%",
-    padding: 5,
-  },
-  inner: {
-    flex: 1,
-    backgroundColor: "#eee",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
+    backgroundColor: '#fef4e8',
   },
   image: {
-    width: "100%",
-    height: "100%",
+    width: 200,
+     height: 200 ,
     resizeMode: "contain",
   },
   text: {
     fontSize: 25,
     textAlign: "center",
-  },
-  button: {
-    backgroundColor: "black",
-    padding: 10,
-    marginTop: 10,
-    alignItems: "center",
-    borderWidth: 3,
-    borderColor: "white",
-    borderRadius: 3,
-  },
-  text: {
     color: "white",
   },
   logIn: {
@@ -143,4 +128,26 @@ const style = StyleSheet.create({
     borderRadius: 3,
     width: 100,
   },
+  cardContainer:{
+    overflow: 'hidden',
+    width: '47%',
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: 'black',
+    marginBottom: 20,
+  },
+  cardTextContainer:{
+    flex: 1,
+    alignItems: "flex-start",
+  },
+  buyButton:{
+    backgroundColor: "pink",
+    padding: 10,
+    marginBottom: 30,
+    alignItems: "center",
+    borderWidth: 2,
+    borderColor: "black",
+    borderRadius: 3,
+    width: '50%',
+  }
 });
