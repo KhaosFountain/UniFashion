@@ -78,6 +78,8 @@ export default function FilterScreen({ navigation }) {
     { label: "Red", value: "red" },
     { label: "Green", value: "green" },
     { label: "Blue", value: "blue" },
+    { label: "n/a", value: "" },
+
   ];
 
   const clothingTypes = [
@@ -86,6 +88,7 @@ export default function FilterScreen({ navigation }) {
     { label: "Shoe", value: "shoe" },
     { label: "Pants", value: "pants" },
     { label: "Shorts", value: "shorts" },
+    { label: "n/a", value: "" },
   ];
 
   const renderItemColor = ({ item }) => (
