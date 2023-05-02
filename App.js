@@ -69,11 +69,6 @@ export default function App() {
             headerStyle: { backgroundColor: "#102820FF" },
             headerTintColor: "white",
             headerTitleAlign: 'center',
-            headerRight: () => {
-              return(
-                <Popup/>
-              );
-          },
           }}
         />
         <Stack.Screen
