@@ -19,6 +19,7 @@ import SignupScreen from "./Screens/Signup";
 import AuthScreen from "./Screens/Auth";
 import AddScreen from "./Screens/AddScreen";
 import EditScreen from "./Screens/EditScreen";
+import FilterScreen from "./Screens/FilterScreen";
 
 //components
 import Popup from "./components/Filter";
@@ -95,6 +96,16 @@ export default function App() {
             headerTitleAlign: 'center',
           }}
         />
+        <Stack.Screen
+          name="Filter"
+          component={FilterScreen}
+          options={{
+            title: "Add Clothes",
+            headerStyle: { backgroundColor: "#102820FF" },
+            headerTintColor: "white",
+            headerTitleAlign: 'center',
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
 
@@ -113,6 +124,11 @@ const HomeScreen = ({ navigation }) => {
         <View style={style.section}>
           <Pressable onPress={() => navigation.navigate("Add")} style={style.add}>
             <Text style={style.text}>Add Product</Text>
+          </Pressable>
+        </View>
+        <View style={style.section}>
+          <Pressable onPress={() => navigation.navigate("Filter")} style={style.add}>
+            <Text style={style.text}>Filter Products</Text>
           </Pressable>
         </View>
       </View>
