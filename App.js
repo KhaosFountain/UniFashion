@@ -95,8 +95,8 @@ export default function App() {
           name="Filter"
           component={FilterScreen}
           options={{
-            title: "Add Clothes",
-            headerStyle: { backgroundColor: "#102820FF" },
+            title: "Filter Clothes",
+            headerStyle: { backgroundColor: "#2E5266FF" },
             headerTintColor: "white",
             headerTitleAlign: 'center',
           }}

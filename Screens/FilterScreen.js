@@ -37,8 +37,6 @@ export default function FilterScreen({ navigation }) {
       });
       const data = await res.json();
       setFiltered(data);
-      setColor("");
-      setType("");
     } catch (err) {
       console.log(err);
       navigation.navigate("signup");
@@ -183,7 +181,7 @@ export default function FilterScreen({ navigation }) {
 
           {/* Add Product Button */}
           <Pressable style={style.addButton} onPress={async () => callAPI()}>
-            <Text style={style.buttonText}>Add Product</Text>
+            <Text style={style.buttonText}>Filter</Text>
           </Pressable>
           {filtered.map((filter) => (
             <View style={style.cardContainer} key={filter._id}>

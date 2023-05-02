@@ -77,8 +77,8 @@ export default function ViewScreen({ navigation }) {
             />
             <View style={style.cardTextContainer}>
               <Text style={style.cardTitle}>Title: {product.productTitle}</Text>
-              <Text style={style.cardSubtitle}>color: {product.color}</Text>
-              <Text style={style.cardName}>name: {product.productName}</Text>
+              <Text style={style.cardSubtitle}>Color: {product.color}</Text>
+              <Text style={style.cardName}>Name: {product.productName}</Text>
               <Text style={style.cardPrice}>Price: ${product.price}</Text>
             </View>
             <Pressable
