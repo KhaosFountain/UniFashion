@@ -5,7 +5,6 @@ export default function AuthScreen({ navigation }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isLogin, setLogin] = useState(false);
-
     const callAPI = async () => {
         try {
             const res = await fetch(
@@ -59,7 +58,7 @@ export default function AuthScreen({ navigation }) {
                 onChangeText={pass => setPassword(pass)}
                 secureTextEntry={true}
             />
-            <Pressable style={style.logIn} onPress={() => callAPI()}>
+            <Pressable style={style.logIn} onPress={async () => callAPI()}>
                 <Text style={style.text}>Log In</Text>
             </Pressable>
 
