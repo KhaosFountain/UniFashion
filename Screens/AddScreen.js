@@ -101,7 +101,7 @@ export default function AddScreen() {
               style={style.input}
               placeholder="Enter cloth name"
               value={name}
-              onChangeText={setName}
+              onChangeText={newName => setName(newName)}
             />
           </View>
 
@@ -111,7 +111,7 @@ export default function AddScreen() {
               style={style.input}
               placeholder="Enter cloth price"
               value={price}
-              onChangeText={setPrice}
+              onChangeText={newPrice => setPrice(newPrice)}
             />
           </View>
 
@@ -184,7 +184,7 @@ export default function AddScreen() {
               style={style.input}
               placeholder="Enter URL"
               value={url}
-              onChangeText={setUrl}
+              onChangeText={newUrl => setUrl(newUrl)}
             />
           </View>
 
